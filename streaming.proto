@@ -1,0 +1,15 @@
+syntax = "proto3";
+package streaming;
+
+message Tick {
+  string symbol    = 1;
+  double price     = 2;
+  int64  timestamp = 3;
+  double indicator = 4; // e.g. moving average
+}
+
+service TickService {
+  rpc StreamTicks(Empty) returns (stream Tick) {}
+}
+
+message Empty {}
